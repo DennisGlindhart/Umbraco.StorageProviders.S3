@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>disable</Nullable>
+        <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <Description>S3 Storage file system provider for Umbraco CMS</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="Imaging/S3FileSystemImageCache.cs" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Umbraco.Cms.Web.Common" Version="9.0.0" />
+        <PackageReference Include="AWSSDK.S3" Version="3.7.8.15" />
+    </ItemGroup>
+</Project>
