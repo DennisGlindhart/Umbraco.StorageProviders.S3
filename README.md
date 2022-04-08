@@ -2,6 +2,35 @@
 
 Based on AzureBlob provider https://github.com/umbraco/Umbraco.StorageProviders.git and inspired by https://github.com/DannerrQ/Umbraco-S3-Provider
 
+Usage
+-----
+
+In startup.cs
+
+ConfigureServices:
+
+```
+     services.AddUmbraco(_env, _config)
+           .AddBackOffice()
+           .AddWebsite()
+           .AddComposers()
+           //Add this, with false for now (Virtual/CDN not supported)
+           .AddS3MediaFileSystem(false)
+```
+
+Configure:
+```
+
+     app.UseUmbraco()
+          .WithMiddleware(u =>
+          {
+               u.UseBackOffice();
+               u.UseWebsite();
+               //Add this
+               u.UseS3MediaFileSystem();
+           })
+```
+
 Configuration
 -------------
 
