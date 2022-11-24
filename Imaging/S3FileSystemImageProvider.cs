@@ -75,7 +75,7 @@ namespace Umbraco.StorageProviders.S3.Imaging
         {
             if (context == null) throw new ArgumentNullException(nameof(context));
 
-            return _formatUtilities.GetExtensionFromUri(context.Request.GetDisplayUrl()) != null;
+            return _formatUtilities.TryGetExtensionFromUri(context.Request.GetDisplayUrl(), out var _);
         }
 
         /// <inheritdoc />

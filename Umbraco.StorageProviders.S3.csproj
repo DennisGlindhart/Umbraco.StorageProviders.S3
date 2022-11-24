@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <Nullable>disable</Nullable>
         <AnalysisMode>AllEnabledByDefault</AnalysisMode>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -12,7 +12,7 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="Umbraco.Cms.Web.Common" Version="9.0.0" />
+        <PackageReference Include="Umbraco.Cms.Web.Common" Version="10.0.1" />
         <PackageReference Include="AWSSDK.S3" Version="3.7.8.15" />
     </ItemGroup>
 </Project>
