@@ -73,8 +73,10 @@ namespace Umbraco.StorageProviders.S3
             //    x.ModifiedSinceDate = 
             //};
 
-            try {
-                properties = await client.GetObjectAsync(s3config.BucketName, context.Request.Path);
+            try
+            {
+                var path = context.Request.Path.Value.TrimStart("/");
+                properties = await client.GetObjectAsync(s3config.BucketName, path).ConfigureAwait(false);
             } catch (AggregateException e) {
                 if (e.InnerException is AmazonS3Exception)
                 {

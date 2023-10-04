@@ -91,11 +91,15 @@ namespace Umbraco.StorageProviders.S3.Imaging
             var blob = _fileSystemProvider
                 .GetFileSystem(_name)
                 .GetS3Client();
-            
-            try {
-                var image = await blob.GetObjectAsync(s3config.BucketName, context.Request.Path).ConfigureAwait(false);
+
+            try
+            {
+                var path = context.Request.Path.Value!.TrimStart('/');
+                var image = await blob.GetObjectAsync(s3config.BucketName, path).ConfigureAwait(false);
                 return new S3StorageImageResolver(image);
-            } catch (AggregateException e) {
+            }
+            catch (AggregateException e)
+            {
                 if (e.InnerException is AmazonS3Exception)
                 {
                     AmazonS3Exception ex = (AmazonS3Exception)e.InnerException;
