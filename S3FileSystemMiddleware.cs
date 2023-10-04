@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using Umbraco.Cms.Core.Hosting;
+using Umbraco.Extensions;
 using Umbraco.StorageProviders.S3.IO;
 
 namespace Umbraco.StorageProviders.S3
@@ -73,8 +74,10 @@ namespace Umbraco.StorageProviders.S3
             //    x.ModifiedSinceDate = 
             //};
 
-            try {
-                properties = await client.GetObjectAsync(s3config.BucketName, context.Request.Path);
+            try
+            {
+                var path = context.Request.Path.Value.TrimStart("/");
+                properties = await client.GetObjectAsync(s3config.BucketName, path).ConfigureAwait(false);
             } catch (AggregateException e) {
                 if (e.InnerException is AmazonS3Exception)
                 {

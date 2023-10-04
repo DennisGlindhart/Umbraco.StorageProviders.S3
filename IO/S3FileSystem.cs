@@ -359,9 +359,9 @@ namespace Umbraco.StorageProviders.S3.IO
         {
             var s3config = new AmazonS3Config()
             {
+                ServiceURL = Config.ServiceUrl,
                 RegionEndpoint = Amazon.RegionEndpoint.GetBySystemName(Config.Region),
                 ForcePathStyle = Config.ForcePathStyle,
-                ServiceURL = Config.ServiceUrl
             };
 
             BasicAWSCredentials creds = new BasicAWSCredentials(Config.AccessKey, Config.SecretKey);
