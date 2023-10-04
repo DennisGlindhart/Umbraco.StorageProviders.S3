@@ -94,7 +94,7 @@ namespace Umbraco.StorageProviders.S3.Imaging
 
             try
             {
-                var path = context.Request.Path.Value!.TrimStart('/');
+                var path = context.Request.Path.Value.TrimStart('/');
                 var image = await blob.GetObjectAsync(s3config.BucketName, path).ConfigureAwait(false);
                 return new S3StorageImageResolver(image);
             }
